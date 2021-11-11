@@ -3,30 +3,37 @@ import { Link, useLocation, useHistory } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import useAuth from '../../../Hooks/useAuth';
 const SingIn = () => {
-    const { singInWithGoogle, user, singInWithEmailPassword, setError, handaleEmail, handalePassword, error } = useAuth();
+    const { setIsLoading, singInWithGoogle, user, singInWithEmailPassword, setError, handaleEmail, handalePassword, error } = useAuth();
     const location = useLocation()
     const history = useHistory();
-    const redirect_uri = location.state?.from || '/register'
+    const redirect_uri = location.state?.from || '/'
     const handaleGoogleLogin = () => {
         singInWithGoogle()
             .then(result => {
+                setIsLoading(true)
                 history.push(redirect_uri)
 
+            })
+            .catch((err) => console.log(err))
+            .finally(() => {
+                setIsLoading(false)
             })
     }
     const handaleEmailSingIn = e => {
         e.preventDefault();
         singInWithEmailPassword()
             .then((result) => {
-                const user = result.user;
-                console.log(user)
-                console.log(user.password)
+                setIsLoading(true)
+                history.push(redirect_uri)
                 setError('');
 
             })
             .catch(error => {
                 setError(error.message);
                 console.log(error.message)
+            })
+            .finally(() => {
+                setIsLoading(false)
             })
     }
     return (

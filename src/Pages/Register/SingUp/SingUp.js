@@ -4,15 +4,21 @@ import { Link, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 
 const SingUp = () => {
-    const { email, password, user, error, singInWithGoogle, handaleEmail, handalePassword, singUpWithEmailPassword, logOut, handleNameChange, setUserName, setError } = useAuth();
+    const { name, updateName, password, user, error, singInWithGoogle, handaleEmail, handalePassword, singUpWithEmailPassword, handleNameChange, setUserName, setError, setIsLoading } = useAuth();
     const location = useLocation();
     const history = useHistory();
-    const redirect_uri = location.state?.from || '/singup'
+    const redirect_uri = location.state?.from || '/'
+    console.log(redirect_uri)
     const handaleGoogleLogin = () => {
         singInWithGoogle()
             .then(result => {
+                setIsLoading(true)
                 history.push(redirect_uri)
 
+            })
+            .catch((err) => console.log(err))
+            .finally(() => {
+                setIsLoading(false)
             })
     }
     const handaleEmailSingUp = e => {
@@ -27,13 +33,17 @@ const SingUp = () => {
         }
         singUpWithEmailPassword()
             .then((result) => {
-                const user = result.user;
-                console.log(user)
+                setIsLoading(true)
+                updateName(name)
+                history.push(redirect_uri)
                 setError('');
                 setUserName();
             })
             .catch(error => {
                 setError(error.message);
+            })
+            .finally(() => {
+                setIsLoading(false)
             })
 
     }
@@ -74,7 +84,7 @@ const SingUp = () => {
                                 Sing In
                             </Button>
                         </Form>
-                        <p>Alredy have Account? <Link to="/singin"> Go to Log In</Link> </p>
+                        <p>Alredy have Account? <Link to="/singin "> Go to Log In</Link> </p>
                         ------------------------or------------------------
                         <br />
 

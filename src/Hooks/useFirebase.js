@@ -9,6 +9,7 @@ const useFirebase = () => {
     const [error, setError] = useState('')
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(true)
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
 
@@ -38,6 +39,15 @@ const useFirebase = () => {
         updateProfile(auth.currentUser, { displayName: name })
             .then(result => { })
     }
+    const updateName = (name) => {
+        updateProfile(auth.currentUser, {
+            displayName: name
+        }).then(() => {
+            window.location.reload()
+        }).catch((error) => {
+            setError(error)
+        });
+    }
     const logOut = () => {
         signOut(auth)
             .then(() => {
@@ -45,17 +55,27 @@ const useFirebase = () => {
             })
     };
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            console.log(user);
             if (user) {
+
                 setUser(user)
+            } else {
+                setUser({})
             }
-        });
+            setIsLoading(false)
+        })
+        return () => unsubscribe()
     }, []);
     return {
+        name,
         email,
         password,
         user,
         error,
+        isLoading,
+        updateName,
+        setIsLoading,
         singInWithGoogle,
         setError,
         handleNameChange,

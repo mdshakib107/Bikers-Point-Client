@@ -17,15 +17,13 @@ const Header = () => {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
+                                <Link to="/explore" className="text-decoration-none text fw-bold fs-5 px-2 mx-auto">
+                                    Explore
+                                </Link>
 
-                                {user.email && <Link className="text-decoration-none text fw-bold fs-5 px-2" to="/myorder">
-                                    My Order
-                                </Link>}
-                                {user.email && <Link className="text-decoration-none text fw-bold fs-5 px-2" to="/manageallpackage">
-                                    Manage All Packages
-                                </Link>}
-                                {user.email && <Link className="text-decoration-none text fw-bold fs-5 px-2" to="/addpackage">
-                                    Add A Pakages
+
+                                {user.email && <Link className="text-decoration-none text fw-bold fs-5 px-2" to="/addproducts">
+                                    Add A Product
                                 </Link>}
                                 {user.email && <Link to="/singup"><span className="fas fa-user-circle text fw-bold fs-5 p-2"> {user.displayName}</span></Link>}
                                 {user.email ?
@@ -35,6 +33,7 @@ const Header = () => {
                                     <Link to="/singup" className="text-decoration-none text fw-bold fs-5 px-2 mx-auto">
                                         Sing In/Log In
                                     </Link>}
+
 
 
                             </Nav>
