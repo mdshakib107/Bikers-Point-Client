@@ -9,7 +9,9 @@ const PlaceOrder = () => {
     const { user } = useAuth();
     const { id } = useParams();
     const [product, setproduct] = useState({});
-    const { from, img, person, price, stay, title, where, description } = product;
+    const { img, price, name, description } = product;
+    console.log(product)
+    const orderProduct = { img, price, name, description };
 
     useEffect(() => {
         fetch(`http://localhost:5000/singleProduct/${id}`)
@@ -21,9 +23,9 @@ const PlaceOrder = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const onSubmit = data => {
-
         data.status = 'Pending'
-        axios.post('http://localhost:5000/placeorder', data)
+        const order = { ...data, ...orderProduct };
+        axios.post('http://localhost:5000/placeorder', order)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('Order Conformd');
@@ -39,12 +41,10 @@ const PlaceOrder = () => {
                     <Card.Img className="" variant="top" src={img} />
                     <Card.Body>
                         <Card.Text className="text-start">
-                            <h4 className="card-title fw-bold">{title}</h4>
+                            <h4 className="card-title fw-bold">{name}</h4>
                             <h5 className="card-title fw-bold text-danger ">Best Price: {price}</h5>
-                            <p className="card-text fw-bold">Stay: {stay}</p>
-                            <p className="card-text fw-bold">Departure Countries: {from}</p>
-                            <p className="card-text  fw-bold">Destination Countries:  {where}</p>
-                            <p className="card-text fst-italic  fw-bold">Min Allowed: {person}</p>
+                            {/* <p className="card-text fw-bold">Stay: {stay}</p> */}
+
                             <p className="card-text"><span className="  fw-bold">Description:</span> {description}</p>
                         </Card.Text>
                     </Card.Body>

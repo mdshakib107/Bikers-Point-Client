@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import AllProduct from '../AllProduct/AllProduct';
-const AllProducts = () => {
-    const [products, setproducts] = useState([])
+import Review from '../Review/Review'
+
+const Reviews = () => {
+    const [reviews, setReviews] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/allproduct')
+        fetch('http://localhost:5000/allreview')
             .then(res => res.json())
-            .then(data => setproducts(data));
+            .then(data => setReviews(data));
     }, [])
-
+    console.log(reviews)
     return (
         <div>
             <div className="">
@@ -17,11 +18,12 @@ const AllProducts = () => {
                     <div className="container">
                         <div className="row row-cols-1 row-cols-md-3 g-4 p-3">
                             {
-                                products.map(product =>
-                                    <AllProduct
-                                        key={product._id}
-                                        product={product}
-                                    ></AllProduct>
+                                reviews.map(review =>
+
+                                    <Review
+                                        key={review._id}
+                                        review={review}
+                                    ></Review>
                                 )
                             }
                         </div>
@@ -31,4 +33,4 @@ const AllProducts = () => {
     );
 };
 
-export default AllProducts;
+export default Reviews;

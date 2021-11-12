@@ -22,16 +22,16 @@ const Header = () => {
                                 </Link>
 
 
-                                {user.email && <Link className="text-decoration-none text fw-bold fs-5 px-2" to="/addproducts">
-                                    Add A Product
+                                {user.email && <Link className="text-decoration-none text fw-bold fs-5 px-2" to="/dashbord">
+                                    Dashboard
                                 </Link>}
-                                {user.email && <Link to="/singup"><span className="fas fa-user-circle text fw-bold fs-5 p-2"> {user.displayName}</span></Link>}
+                                {user.email && <span className="fas fa-user-circle text fw-bold fs-5 p-2"> {user.displayName}</span>}
                                 {user.email ?
                                     <Button className="" onClick={logOut} variant="warning">Log Out</Button>
 
                                     :
-                                    <Link to="/singup" className="text-decoration-none text fw-bold fs-5 px-2 mx-auto">
-                                        Sing In/Log In
+                                    <Link to="/singin" className="text-decoration-none text fw-bold fs-5 px-2 mx-auto">
+                                        Log In
                                     </Link>}
 
 

@@ -9,10 +9,11 @@ import SingUp from './Pages/Register/SingUp/SingUp';
 import SingIn from './Pages/Register/SingIn/SingIn';
 import Header from "./Pages/Share/Header/Header";
 import Footer from './Pages/Share/Footer/Footer';
-import AddProduct from './Pages/Dashbord/Admin/AddProduct/AddProduct';
 import Purchase from './Pages/Purchase/Purchase';
 import Home from './Pages/HomePage/Home/Home';
 import AllProducts from './Pages/Explore/AllProducts/AllProducts';
+import Dashbord from './Pages/Dashbord/Dashbord/Dashbord';
+import BlogDetails from './Pages/HomePage/BlogsSection/BlogDetails/BlogDetails';
 
 
 function App() {
@@ -28,11 +29,14 @@ function App() {
             <Route path="/explore">
               <AllProducts></AllProducts>
             </Route>
-            <PrivateRaute path="/addproducts">
-              <AddProduct></AddProduct>
+            <PrivateRaute path="/dashbord">
+              <Dashbord></Dashbord>
             </PrivateRaute>
             <PrivateRaute path="/purchase:id">
               <Purchase></Purchase>
+            </PrivateRaute>
+            <PrivateRaute path="/blogdetails:id">
+              <BlogDetails></BlogDetails>
             </PrivateRaute>
             <Route path="/singin">
               <SingIn></SingIn>

@@ -84,7 +84,7 @@ const SingUp = () => {
                                 Sing In
                             </Button>
                         </Form>
-                        <p>Alredy have Account? <Link to="/singin "> Go to Log In</Link> </p>
+                        <p>Alredy have Account? <Link to="/singin"> Go to Log In</Link> </p>
                         ------------------------or------------------------
                         <br />
 
