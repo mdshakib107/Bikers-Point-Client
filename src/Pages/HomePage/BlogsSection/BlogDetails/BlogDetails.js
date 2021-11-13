@@ -8,7 +8,7 @@ const BlogDetails = () => {
     const { title, img, description } = blog;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/singleblog/${id}`)
+        fetch(`https://radiant-island-49212.herokuapp.com/singleblog/${id}`)
             .then((res) => res.json())
             .then((idData) => setBlog(idData));
     }, [id]);

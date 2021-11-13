@@ -36,6 +36,7 @@ const SingIn = () => {
                 setIsLoading(false)
             })
     }
+
     return (
         <div>
             {user.email ?
@@ -46,7 +47,7 @@ const SingIn = () => {
                         <img src="./image/login.png" alt="" />
                     </div>
                     <div className="container text-start p-5 col ">
-                        <h1>Log In</h1>
+                        <h1>Sing In</h1>
                         <p>Log up or log  in to access your orders, special offers, health tips and more!</p>
                         <Form onSubmit={handaleEmailSingIn}>
                             <Form.Group className="mb-3 w-75" controlId="formBasicEmail">
@@ -63,10 +64,10 @@ const SingIn = () => {
                             </Form.Group>
                             <div className="row mb-3 text-danger">{error}</div>
                             <Button variant="primary" type="submit">
-                                Submit
+                                SingIn
                             </Button>
                         </Form>
-                        <p>New to Netmeds? <Link to="/singUp"> Create Account </Link> </p>
+                        <p>New to Biker's Point? <Link to="/singUp"> Create Account </Link> </p>
                         ------------------------or------------------------
                         <br />
 

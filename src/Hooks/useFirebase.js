@@ -15,12 +15,20 @@ const useFirebase = () => {
 
     const singInWithGoogle = () => {
         return signInWithPopup(auth, googleProvider)
+            .then((result) => {
+                hanldeUserInfo(result.user.email)
+                console.log(result.user.email)
+            })
             .catch(error => {
                 setError(error.massage)
             })
     }
     const singUpWithEmailPassword = () => {
         return createUserWithEmailAndPassword(auth, email, password)
+            .then((result) => {
+                hanldeUserInfo(result.user.email)
+                console.log(result.user.email)
+            })
 
     }
     const singInWithEmailPassword = () => {
@@ -54,6 +62,18 @@ const useFirebase = () => {
                 setUser({})
             })
     };
+
+    const hanldeUserInfo = (email) => {
+        fetch("https://radiant-island-49212.herokuapp.com/addUser", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ email })
+        })
+            .then(res => res.json())
+            .then(result => console.log(result));
+
+    };
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -66,6 +86,7 @@ const useFirebase = () => {
         })
         return () => unsubscribe()
     }, []);
+
     return {
         name,
         email,

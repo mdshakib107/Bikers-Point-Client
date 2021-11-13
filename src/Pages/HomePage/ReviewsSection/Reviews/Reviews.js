@@ -5,11 +5,10 @@ const Reviews = () => {
     const [reviews, setReviews] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/allreview')
+        fetch('https://radiant-island-49212.herokuapp.com/allreview')
             .then(res => res.json())
             .then(data => setReviews(data));
     }, [])
-    console.log(reviews)
     return (
         <div>
             <div className="">

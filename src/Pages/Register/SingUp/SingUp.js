@@ -27,10 +27,10 @@ const SingUp = () => {
             setError('Password Must Be 6 Charecter')
             return;
         }
-        if (!/(?=.*[A-Z].*[A-Z])/.test(password)) {
-            setError('Password Must contain 2 upper case');
-            return;
-        }
+        // if (!/(?=.*[A-Z].*[A-Z])/.test(password)) {
+        //     setError('Password Must contain 2 upper case');
+        //     return;
+        // }
         singUpWithEmailPassword()
             .then((result) => {
                 setIsLoading(true)
@@ -81,7 +81,7 @@ const SingUp = () => {
                             </Form.Group>
                             <div className="row mb-3 text-danger">{error}</div>
                             <Button variant="primary" type="submit">
-                                Sing In
+                                SingUp
                             </Button>
                         </Form>
                         <p>Alredy have Account? <Link to="/singin"> Go to Log In</Link> </p>

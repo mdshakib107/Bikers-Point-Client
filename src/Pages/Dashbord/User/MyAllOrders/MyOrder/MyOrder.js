@@ -9,7 +9,7 @@ const MyOrder = ({ orderProduct }) => {
     const handleDeletePackage = (id) => {
         const proceed = window.confirm('Are you sure for Canceling Booking?');
         if (proceed) {
-            axios.delete(`http://localhost:5000/deleteProduct/${id}`)
+            axios.delete(`https://radiant-island-49212.herokuapp.com/deleteProduct/${id}`)
                 .then((result) => {
                     if (result.deletedCount) {
                         window.location.reload();

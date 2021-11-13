@@ -14,7 +14,7 @@ const Blog = ({ blog }) => {
                         {srtText}
                     </Card.Text>
                     <Link to={`/blogDetails${_id}`}>
-                        <Button variant="success mx-1 text-end"> Book Now </Button>
+                        <Button variant="primary mx-1">Read More...</Button>
                     </Link>
                 </Card.Body>
             </Card>

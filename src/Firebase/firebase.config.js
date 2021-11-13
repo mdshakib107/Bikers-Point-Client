@@ -1,9 +1,9 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyAACVWl6PhGTARh0MX374rBSwiXs7jxSDA",
-    authDomain: "bikers-point-4a9aa.firebaseapp.com",
-    projectId: "bikers-point-4a9aa",
-    storageBucket: "bikers-point-4a9aa.appspot.com",
-    messagingSenderId: "898218533307",
-    appId: "1:898218533307:web:0609206936c738f240e49e"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 export default firebaseConfig;

@@ -11,69 +11,74 @@ import GiveReview from "../User/GiveReview/GiveReview";
 import MyOrders from "../User/MyAllOrders/MyOrders/MyOrders";
 import Payment from "../User/Payment/Payment";
 import UserProfile from "../User/UserProfile/UserProfile";
+import './Dashbord.css'
 
 const Dashbord = () => {
     let { path, url } = useRouteMatch();
     const { user } = useFirebase();
-    const [isAdmi, setIsAdmin] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
 
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/checkAdmin/${user?.email}`)
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             if (data[0]?.role === "admin") {
-    //                 setIsAdmin(true);
-    //             } else {
-    //                 setIsAdmin(false);
-    //             }
-    //         });
-    // }, [user?.email]);
-    // console.log(isAdmi);
-
+    useEffect(() => {
+        fetch(`https://radiant-island-49212.herokuapp.com/checkAdmin/${user?.email}`)
+            .then((res) => res.json())
+            .then((data) => {
+                if (data[0]?.role === "admin") {
+                    setIsAdmin(true);
+                } else {
+                    setIsAdmin(false);
+                }
+            });
+    }, [user?.email]);
     return (
         <div>
-            <div className="dashboard-container ">
+            <div className="container-flud w-100 ">
                 <div className="row">
-                    <div className="col-md-3 ">
-                        <div className="dashboard">
-                            <h5>Dashboard</h5>
-                            <Nav className="flex-column bg-dark ">
-                                <Link to={`${url}`}>
-                                    Profile
-                                </Link>
-                                <Link to={`${url}/myorder`}>
-                                    My Order list
-                                </Link>
-                                <Link to={`${url}/payment`}>
-                                    Payment
-                                </Link>
-                                <Link to={`${url}/review`}>
-                                    Give Review
-                                </Link>
-                                <Link to={`${url}/manageOrder`}>
+                    <div className="col-md-3 hight bg ">
+                        <div className="p-3">
+                            <Nav className="flex-column ">
+                                <h4 className=" text fw-bold fs-3 my-4">Dashboard</h4>
+                                {isAdmin && <Link className="text-decoration-none text fw-bold fs-5 p-2 mx-auto" to={`${url}/manageOrder`}>
                                     Manage All Order
-                                </Link>
-                                <Link to={`${url}/manageProducts`}>
+                                </Link>}
+                                {isAdmin && <Link className="text-decoration-none text fw-bold fs-5 p-2 mx-auto" to={`${url}/manageProducts`}>
                                     Manage All Products
-                                </Link>
-                                <Link to={`${url}/addProduct`}>
-                                    Add Product
-                                </Link>
-                                <Link to={`${url}/addBlog`}>
-                                    Add Blog
-                                </Link>
-                                <Link to={`${url}/makeAdmin`}>
+                                </Link>}
+                                {isAdmin ?
+                                    <Link className="text-decoration-none text fw-bold fs-5 p-2 mx-auto" to={`${url}/addBlog`}>
+                                        Add Blog
+                                    </Link>
+                                    :
+                                    <Link className="text-decoration-none text fw-bold fs-5 p-2 mx-auto" to={`${url}`}>
+                                        Profile
+                                    </Link>
+                                }
+                                {isAdmin ?
+                                    <Link className="text-decoration-none text fw-bold fs-5 p-2 mx-auto" to={`${url}/addProduct`}>
+                                        Add Product
+                                    </Link>
+                                    :
+                                    <Link className="text-decoration-none text fw-bold fs-5 p-2 mx-auto" to={`${url}/myorder`}>
+                                        My Order list
+                                    </Link>
+                                }
+                                {isAdmin ? <Link className="text-decoration-none text fw-bold fs-5 p-2 mx-auto" to={`${url}/makeAdmin`}>
                                     Make Admin
                                 </Link>
+                                    :
+                                    <Link className="text-decoration-none text fw-bold fs-5 p-2 mx-auto" to={`${url}/payment`}>
+                                        Payment
+                                    </Link>
+                                }
 
-                                {/* {isAdmi ? (
+                                {isAdmin ?
                                     <Link to={`${url}/addService`}>
                                         Add Service
                                     </Link>
-                                )} */}
-                                {/* <Link to={`${url}/manageServices`}>
-                                        <li className="dashboard-menu">Manage Service
-                                    </Link> */}
+                                    :
+                                    <Link className="text-decoration-none text fw-bold fs-5 p-2 mx-auto" to={`${url}/review`}>
+                                        Give Review
+                                    </Link>
+                                }
                             </Nav>
                         </div>
                     </div>
@@ -107,9 +112,6 @@ const Dashbord = () => {
                             <Route exact path={`${path}/makeAdmin`}>
                                 <MakeAdmin></MakeAdmin>
                             </Route>
-                            {/* <Route exact path={`${path}/manageServices`}>
-                                <ManageServices></ManageServices>
-                            </Route> */}
                         </Switch>
                     </div>
                 </div>

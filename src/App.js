@@ -5,6 +5,7 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import AuthProvider from './Contex/AuthProvider';
 import PrivateRaute from './Pages/PrivateRoute/PrivateRaute'
+import NotFound from './Pages/NotFound/NotFound'
 import SingUp from './Pages/Register/SingUp/SingUp';
 import SingIn from './Pages/Register/SingIn/SingIn';
 import Header from "./Pages/Share/Header/Header";
@@ -44,9 +45,9 @@ function App() {
             <Route path="/singup">
               <SingUp></SingUp>
             </Route>
-            {/* <Route path="*">
+            <Route path="*">
               <NotFound></NotFound>
-            </Route> */}
+            </Route>
           </Switch>
           <Footer></Footer>
         </BrowserRouter>

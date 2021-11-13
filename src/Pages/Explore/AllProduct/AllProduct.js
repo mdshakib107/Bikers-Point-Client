@@ -8,13 +8,13 @@ const AllProduct = ({ product }) => {
     return (
         <div>
             <div className="col ">
-                <div className="card cart text-start ">
+                <div className="card cart text-start p-4 ">
                     <img src={img} className="card-img-top" alt="..." />
                     <div className="card-body py-1">
                         <h5 className="card-title fw-bold">{name}</h5>
-                        <h6 className="card-title fw-bold text-danger ">Best Price: {price}</h6>
+                        <h4 className="card-title fw-bold text-danger ">Best Price: {price}</h4>
                         <Link to={`/purchase${_id}`}>
-                            <Button variant="success mx-1 text-end"> Book Now </Button>
+                            <Button variant="primary mx-1 text-end"> Purchase Now</Button>
                         </Link>
 
                     </div>

@@ -8,11 +8,11 @@ const Header = () => {
     const { user, logOut } = useAuth();
     return (
         <div>
-            <div className="bg fixed-top">
+            <div className="bg fixed-top w-auto">
                 <Navbar expand="lg" >
                     <Container className="me-auto ">
                         <NavLink to="/">
-                            <img src="./images/logo.png" alt="" width="200" height="50" />
+                            <img src="https://i.ibb.co/1RCYBFh/bikebd-com-logo-1.png" alt="" width="200" height="50" />
                         </NavLink>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
